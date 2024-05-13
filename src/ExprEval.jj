@@ -70,7 +70,7 @@ int facteur() :
 {
     x = primaire()
     [
-        "^" y = facteur()                   { x = (int) Math.pow(x,y); }
+        ( "^" | "**" ) y = facteur()        { x = (int) Math.pow(x,y); }
     ]
                                             { return x; }
 }
@@ -78,6 +78,16 @@ int facteur() :
 
     // primaire -> { expression } | ENTIER
 int primaire() :
+                                            { int x; }
+{
+    ( 	"-"  x = primaire()
+    |   x = atomique()                      { x = -x; }
+    )
+                                            { return x; }
+}
+
+    // atomique -> { expression } | ENTIER
+int atomique() :
                                             { int x; Token t; }
 {
 
@@ -86,7 +96,6 @@ int primaire() :
     )
                                             { return x; }
 }
-
 
 /* Partie lexicale
  * 
