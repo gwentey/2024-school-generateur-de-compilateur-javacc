@@ -76,7 +76,7 @@ int facteur() :
 }
 
 
-    // facteur -> primaire [ ^ facteur ]
+    // primaire -> { expression } | ENTIER
 int primaire() :
                                             { int x; Token t; }
 {
