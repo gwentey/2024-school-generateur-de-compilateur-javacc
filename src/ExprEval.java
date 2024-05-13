@@ -103,13 +103,31 @@ x = x / y;
     throw new Error("Missing return statement in function");
 }
 
-// facteur -> ( expression ) | entier
-  static final public int facteur() throws ParseException {int x; Token t;
+// facteur -> primaire [ ^ facteur ]
+  static final public int facteur() throws ParseException {int x, y;
+    x = primaire();
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case 6:{
       jj_consume_token(6);
-      x = expression();
+      y = facteur();
+x = (int) Math.pow(x,y);
+      break;
+      }
+    default:
+      jj_la1[4] = jj_gen;
+      ;
+    }
+{if ("" != null) return x;}
+    throw new Error("Missing return statement in function");
+}
+
+// facteur -> primaire [ ^ facteur ]
+  static final public int primaire() throws ParseException {int x; Token t;
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case 7:{
       jj_consume_token(7);
+      x = expression();
+      jj_consume_token(8);
       break;
       }
     case ENTIER:{
@@ -118,7 +136,7 @@ x = Integer.parseInt(t.image);
       break;
       }
     default:
-      jj_la1[4] = jj_gen;
+      jj_la1[5] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -136,13 +154,13 @@ x = Integer.parseInt(t.image);
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[5];
+  static final private int[] jj_la1 = new int[6];
   static private int[] jj_la1_0;
   static {
 	   jj_la1_init_0();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0xc,0xc,0x30,0x30,0x840,};
+	   jj_la1_0 = new int[] {0xc,0xc,0x30,0x30,0x40,0x1080,};
 	}
 
   /** Constructor with InputStream. */
@@ -163,7 +181,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -177,7 +195,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -194,7 +212,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -212,7 +230,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -228,7 +246,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -237,7 +255,7 @@ x = Integer.parseInt(t.image);
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 5; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -288,12 +306,12 @@ x = Integer.parseInt(t.image);
   /** Generate ParseException. */
   static public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[12];
+	 boolean[] la1tokens = new boolean[13];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
 	 }
-	 for (int i = 0; i < 5; i++) {
+	 for (int i = 0; i < 6; i++) {
 	   if (jj_la1[i] == jj_gen) {
 		 for (int j = 0; j < 32; j++) {
 		   if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -302,7 +320,7 @@ x = Integer.parseInt(t.image);
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 12; i++) {
+	 for (int i = 0; i < 13; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

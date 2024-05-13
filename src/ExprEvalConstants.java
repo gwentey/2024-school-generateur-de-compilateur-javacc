@@ -9,7 +9,7 @@ public interface ExprEvalConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int ENTIER = 11;
+  int ENTIER = 12;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -22,6 +22,7 @@ public interface ExprEvalConstants {
     "\"-\"",
     "\"*\"",
     "\"/\"",
+    "\"^\"",
     "\"(\"",
     "\")\"",
     "\" \"",

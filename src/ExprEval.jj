@@ -64,8 +64,20 @@ int terme() :
 }
 
 
-    // facteur -> ( expression ) | entier
+    // facteur -> primaire [ ^ facteur ]
 int facteur() :
+                                            { int x, y; }
+{
+    x = primaire()
+    [
+        "^" y = facteur()                   { x = (int) Math.pow(x,y); }
+    ]
+                                            { return x; }
+}
+
+
+    // facteur -> primaire [ ^ facteur ]
+int primaire() :
                                             { int x; Token t; }
 {
 
